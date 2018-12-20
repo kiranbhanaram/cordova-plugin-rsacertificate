@@ -13,20 +13,10 @@
 //  - This notice may not be removed or altered from any source or binary distribution.
 //
 
-public protocol BlockModeWorker {
-    var cipherOperation: CipherOperationOnBlock { get }
-
-    mutating func encrypt(_ plaintext: ArraySlice<UInt8>) -> Array<UInt8>
-    mutating func decrypt(_ ciphertext: ArraySlice<UInt8>) -> Array<UInt8>
-}
-
-// TODO: remove and merge with BlockModeWorker
-public protocol BlockModeWorkerFinalizing: BlockModeWorker {
-    // Any final calculations, eg. calculate tag
-    // Called after the last block is encrypted
-    mutating func finalize(encrypt ciphertext: ArraySlice<UInt8>) throws -> Array<UInt8>
-    // Called before decryption, hence input is ciphertext
-    mutating func willDecryptLast(ciphertext: ArraySlice<UInt8>) throws -> ArraySlice<UInt8>
-    // Called after decryption, hence input is ciphertext
-    mutating func didDecryptLast(plaintext: ArraySlice<UInt8>) throws -> Array<UInt8>
+/// Cryptor (Encryptor or Decryptor)
+public protocol Cryptor {
+    /// Seek to position in file, if block mode allows random access.
+    ///
+    /// - parameter to: new value of counter
+    mutating func seek(to: Int) throws
 }
