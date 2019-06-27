@@ -410,7 +410,7 @@ import CryptoSwift
 
       strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 65))
       strLabel.text = title
-      strLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightMedium)
+      strLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
       strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
 
 
